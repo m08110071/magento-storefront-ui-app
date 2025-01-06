@@ -1,0 +1,58 @@
+version: "3.8"
+services:
+  mysql:
+    image: bitnami/mysql:8.0
+    container_name: mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=123456
+      - MYSQL_DATABASE=magento
+      - MYSQL_USER=magento
+      - MYSQL_PASSWORD=magento123
+    ports:
+      - "3360:3306"
+  elasticsearch:
+    image: elasticsearch:7.9.3
+    container_name: elasticsearch
+    ports:
+      - "9300:9200"
+    environment:
+      - discovery.type=single-node
+      - "ES_JAVA_OPTS=-Xms768m -Xmx768m"
+  magento:
+    image: docker.io/bitnami/magento:latest
+    container_name: magento
+    restart: always
+    ports:
+      - '8081:8080'
+      - '443:443'
+    environment:
+      - MAGENTO_USERNAME=admin
+      - MAGENTO_PASSWORD=admin123
+      - MAGENTO_HOST=localhost
+      - MAGENTO_DATABASE_HOST=mysql
+      - MAGENTO_DATABASE_PORT_NUMBER=3360
+      - MAGENTO_DATABASE_USER=magento
+      - MAGENTO_DATABASE_NAME=magento
+      - MAGENTO_DATABASE_PASSWORD=magento123
+      - MAGENTO_ENABLE_DATABASE_SSL=yes
+      - MAGENTO_VERIFY_DATABASE_SSL=no
+      - ELASTICSEARCH_HOST=elasticsearch
+      - ELASTICSEARCH_PORT_NUMBER=9300
+    depends_on:
+      - mysql
+      - elasticsearch
+  react-app:
+    build:
+      context: ./storefront-ui
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./storefront-ui:/app
+      - /app/node_modules
+    environment:
+      NODE_ENV: development
+      CHOKIDAR_USEPOLLING: true
+    command: npm run dev
+
+
