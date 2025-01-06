@@ -1,7 +1,5 @@
 # Adobe Commerce (Magento) and Storefront-Ui (React) on Docker
 
-![](https://libs.websoft9.com/common/websott9-cloud-installer.png)
-
 ## Introduction
 
 This repository is an **Cloud Native solution** powered by manhtranpro@gmail.com, it simplifies the complicated installation and initialization process.
