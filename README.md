@@ -25,16 +25,13 @@ git clone --depth=1 https://github.com/m08110071/magento-storefront-ui-app.git
 cd magento-storefront-ui-app
 docker compose  up -d
 ```
+The magento service may take some time to download and install all dependencies, please wait patiently and check container log to make sure everything is completed
+```
 
 ### Verify Storefront
 Storefront-UI: http://localhost:3000
 
-### Install Magento extensions
-Issue:
-- CORS
-
-Solution:
-- Install extension to config header response of API
+### Install Magento
 
 #### Step 1: Log into the container shell as root
 ```
