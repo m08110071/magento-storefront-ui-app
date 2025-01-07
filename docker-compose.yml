@@ -28,16 +28,16 @@ services:
     environment:
       - MAGENTO_USERNAME=admin
       - MAGENTO_PASSWORD=admin123
-      - MAGENTO_HOST=localhost
+      - MAGENTO_HOST=localhost:8081
       - MAGENTO_DATABASE_HOST=mysql
-      - MAGENTO_DATABASE_PORT_NUMBER=3360
+      - MAGENTO_DATABASE_PORT_NUMBER=3306
       - MAGENTO_DATABASE_USER=magento
       - MAGENTO_DATABASE_NAME=magento
       - MAGENTO_DATABASE_PASSWORD=magento123
       - MAGENTO_ENABLE_DATABASE_SSL=yes
       - MAGENTO_VERIFY_DATABASE_SSL=no
       - ELASTICSEARCH_HOST=elasticsearch
-      - ELASTICSEARCH_PORT_NUMBER=9300
+      - ELASTICSEARCH_PORT_NUMBER=9200
     depends_on:
       - mysql
       - elasticsearch
