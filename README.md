@@ -26,7 +26,7 @@ cd magento-storefront-ui-app
 docker compose  up -d
 ```
 The magento service may take some time to download and install all dependencies, please wait patiently and check container log to make sure everything is completed
-```
+
 
 ### Verify Storefront
 Storefront-UI: http://localhost:3000
