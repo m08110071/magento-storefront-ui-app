@@ -50,7 +50,7 @@ const RegisterPage: React.FC = () => {
       } else {
         const customer = response.data.data.createCustomer.customer;
         if (customer) {
-          const tokenResponse = await axios.post('https://your-magento-backend-url/graphql', {
+          const tokenResponse = await axios.post(GRAPHQL_URL, {
             query: `
               mutation {
                 generateCustomerToken(email: "${email}", password: "${password}") {
@@ -61,7 +61,7 @@ const RegisterPage: React.FC = () => {
           });
           const token = tokenResponse.data.data.generateCustomerToken.token;
           localStorage.setItem('customer-token', token);
-          router.push('/');
+          window.location.href = '/';
         }
       }
     } catch (error) {
